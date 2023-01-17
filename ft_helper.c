@@ -1,48 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_helper.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/17 20:13:27 by mleitner         ###   ########.fr       */
+/*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
+/*   Updated: 2023/01/17 15:13:05 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int	main(int argc, char **argv)
+int	find_range(int *arr, int *range)
 {
-	int	*arr;
 	int	i;
 
-	i = 1;
-	arr = malloc((argc - 1) * sizeof(int));
-	while (argv[i])
+	i = 0;
+	range[1] = arr[i];
+	range[0] = arr[i++];
+	while (arr[i])
 	{
-		arr[i - 1] = atoi(argv[i]);
+		if (arr[i] > range[1])
+			range[1] = arr[i];
+		if (arr[i] < range[0])
+			range[0] = arr[i];
 		i++;
 	}
-	i = 0;
-	while (i < (argc - 1))
-		printf("%i ", arr[i++]);
-	return (0);
+	return (range[1] - range[0]);
 }
 
-int	main(int argc, char **argv)
+int	values(int num)
 {
-	t_value	*arr;
-	int		i;
+	int	val;
 
-	i = 1;
-	while (argv[i])
+	val = 0;
+	while (num > 0)
 	{
-		arr = ft_lstnew(argv[i], i - 1);
-		i++;
+		num /= 10;
+		val++;
 	}
-	i = 0;
-	while (i < (argc - 1))
-		printf("%i ", arr[i++]);
-	return (0);
+	return (val);
 }
