@@ -6,7 +6,7 @@
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/17 20:09:45 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:38:09 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@
 # include <stdlib.h>
 
 typedef struct s_value {
-	int		value;
-	char	*str;
-	int		pos_sor;
-	int		pos_uns;
-	int		sorted;
-	t_value	*next;
+	int				value;
+	char			*str;
+	int				pos_sor;
+	int				pos_uns;
+	int				sorted;
+	struct s_value	*next;
 }	t_value;
 
 //helper
 int		find_range(int *arr, int *range);
 int		values(int num);
 //list functions
-t_value	*ft_lstnew(char *str, int sort);
-t_value	*ft_lstlast(t_value *lst);
-void	ft_lstadd_back(t_value **lst, t_value *new);
+t_value	*ft_lstnew(t_value *prev, char *str, int sort);
+int		*ft_lstmax(t_value *lst);
+void	splitlist(t_value *original, t_value **half1, t_value **half2);
+void	mergesortlist(t_value **list);
+t_value	*createmerge(t_value *a, t_value *b);
 
 #endif
