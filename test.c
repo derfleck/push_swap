@@ -1,65 +1,69 @@
-#include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	to_power(int nb, int power)
 {
-	size_t	i;
-	char	*dest2;
-	char	*src2;
-
-	if (!dest && !src)
-		return (0);
-	dest2 = (char *)dest;
-	src2 = (char *)src;
-	i = 0;
-	while (i < n)
+	if (!power)
+		return (1);
+	else
 	{
-		dest2[i] = src2[i];
-		i++;
-	}
-	return (dest2);
-}
-
-void	swap(int (*a), int (*b))
-{
-	int	temp[3];
-
-	ft_memcpy(temp, a, sizeof(temp));
-	ft_memcpy(a, b, sizeof(*a));
-	ft_memcpy(b, temp, sizeof(*b));
-}
-
-void printarr(int **arr, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		printf("index: %i index sort: %i, value: %i\n", arr[i][2], arr[i][1], arr[i][0]);
-		i++;
+		power--;
+		return ((nb * to_power(nb, power)));
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	int	i;
-	int	**arr;
-
-	i = 1;
-	if (argc == 1)
-		return (0);
-	arr = malloc(sizeof(int *) * (argc - 1));
-	while (argv[i])
-	{
-		*(arr + i - 1) = malloc(sizeof(int) * 3);
-		arr[i - 1][0] = atoi(argv[i]);
-		arr[i - 1][1] = i;
-		arr[i - 1][2] = i;
+	int	j;
+	int	value;
+	
+	i = 0;
+	j = 0;
+	value = 5000;
+	while (to_power(2, i) < value)
 		i++;
+	while (j < i)
+	{
+		if (value & 0x01)
+			write(1, &"1", sizeof(char));
+		else
+			write(1, &"0", sizeof(char));
+		value >>= 1;
+		j++;
 	}
-	swap(arr[0], arr[argc - 1]);
-	printarr(arr, argc - 1);
 	return (0);
 }
+
+/*
+int	*pos_check(int *num, int pos, int values)
+{
+	int	i;
+	int	*cmd;
+
+	i = 0;
+	cmd = malloc(sizeof(int) * (values * values));
+	while (i < values)
+	{
+		if (num[i] >> pos & 0x01)
+			cmd[i] = 2;
+		else
+			cmd[i] = 3;
+		i++;
+	}
+}
+*/
+
+/*
+stop = 0
+pa = 1 *
+pb = 2 *
+sa = 3
+sb = 4
+ss = 5
+ra = 6 *
+rb = 7
+rr = 8
+rra = 9
+rrb = 10
+rrr = 11
+*/

@@ -6,7 +6,7 @@
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/19 15:39:09 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:15:04 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ t_value	*ft_lstnew(t_value *prev, char *str, int sort)
 	node->sorted = 0;
 	node->next = NULL;
 	return (node);
+}
+
+t_value	*ft_lstlast(t_value *lst)
+{
+	t_value	*lst2;
+
+	if (!lst)
+		return ((t_value *)lst);
+	lst2 = (t_value *)lst;
+	while (lst2->next)
+	{
+		lst2 = lst2->next;
+	}
+	return (lst2);
 }
 
 int	*ft_lstmax(t_value *lst)
