@@ -6,7 +6,7 @@
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/30 20:22:00 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:23:59 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // - Error handling (no strings)
 // - shorten functions in ft_rdx
 // - check out bonus
+// - implement check for sorted/small ranges
 
 int	main(int argc, char **argv)
 {
