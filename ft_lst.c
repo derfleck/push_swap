@@ -6,12 +6,13 @@
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/20 16:15:04 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:01:37 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+//create new node of linked list
 t_value	*ft_lstnew(t_value *prev, char *str, int sort)
 {
 	t_value	*node;
@@ -30,6 +31,7 @@ t_value	*ft_lstnew(t_value *prev, char *str, int sort)
 	return (node);
 }
 
+//gets last element of linked list
 t_value	*ft_lstlast(t_value *lst)
 {
 	t_value	*lst2;
@@ -44,84 +46,12 @@ t_value	*ft_lstlast(t_value *lst)
 	return (lst2);
 }
 
-int	*ft_lstmax(t_value *lst)
+//helper function, just assigns values from src to dst
+void	list_ass(t_value *src, t_value *dst)
 {
-	int		*arr;
-	t_value	*lst2;
-
-	arr = malloc(2 * sizeof(int));
-	if (!lst || !arr)
-		return (NULL);
-	lst2 = (t_value *)lst;
-	arr[1] = lst2->value;
-	arr[0] = lst2->value;
-	while (lst2)
-	{
-		if (lst2->value > arr[1])
-			arr[1] = lst2->value;
-		if (lst2->value < arr[0])
-			arr[0] = lst2->value;
-		lst2 = lst2->next;
-	}
-	return (arr);
-}
-
-void	splitlist(t_value *original, t_value **half1, t_value **half2)
-{
-	t_value	*fast;
-	t_value	*slow;
-
-	slow = original;
-	fast = original->next;
-
-	while (fast != NULL)
-	{
-		fast = fast->next;
-		if (fast != NULL)
-		{
-			slow = slow->next;
-			fast = fast->next;
-		}
-	}
-
-	*half1 = original;
-	*half2 = slow->next;
-	slow->next = NULL;
-}
-
-void	mergesortlist(t_value **list)
-{
-	t_value	*start;
-	t_value	*a;
-	t_value	*b;
-
-	start = *list;
-	if (start == NULL || start->next == NULL)
-		return ;
-	splitlist(start, &a, &b);
-	mergesortlist(&a);
-	mergesortlist(&b);
-	*list = createmerge(a, b);
-}
-
-t_value	*createmerge(t_value *a, t_value *b)
-{
-	t_value	*res;
-
-	res = NULL;
-	if (a == NULL)
-		return (b);
-	else if (b == NULL)
-		return (a);
-	if (a->value <= b->value)
-	{
-		res = a;
-		res->next = createmerge(a->next, b);
-	}
-	else
-	{
-		res = b;
-		res->next = createmerge(a, b->next);
-	}
-	return (res);
+	dst->pos_sor = src->pos_sor;
+	dst->pos_uns = src->pos_uns;
+	dst->sorted = src->sorted;
+	dst->value = src->value;
+	dst->str = src->str;
 }

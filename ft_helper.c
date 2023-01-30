@@ -6,39 +6,55 @@
 /*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/19 14:00:18 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:20:28 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int	find_range(int *arr, int *range)
+//math helper, performs to the power
+//used to convert binary to decimal
+//also used to calculate number of binary values
+int	to_power(int nb, int power)
 {
-	int	i;
-
-	i = 0;
-	range[1] = arr[i];
-	range[0] = arr[i++];
-	while (arr[i])
+	if (!power)
+		return (1);
+	else
 	{
-		if (arr[i] > range[1])
-			range[1] = arr[i];
-		if (arr[i] < range[0])
-			range[0] = arr[i];
-		i++;
+		power--;
+		return ((nb * to_power(nb, power)));
 	}
-	return (range[1] - range[0]);
 }
 
-int	values(int num)
+//writes original order to integer array
+int	*sort_array(t_value *arr, int values)
 {
-	int	val;
+	t_value	*lst2;
+	int		*sort;
 
-	val = 0;
-	while (num > 0)
+	sort = malloc(sizeof(int) * values);
+	if (!sort)
+		return (NULL);
+	lst2 = arr;
+	while (lst2)
 	{
-		num /= 10;
-		val++;
+		sort[lst2->pos_uns] = lst2->pos_sor;
+		lst2 = lst2->next;
 	}
-	return (val);
+	return (sort);
+}
+
+//function for printing the instructions from the int array
+void	print_instr(int *moves)
+{
+	while (*moves)
+	{
+		if (*moves == 1)
+			write(1, &"pa\n", 3);
+		else if (*moves == 2)
+			write(1, &"pb\n", 3);
+		else if (*moves == 3)
+			write(1, &"ra\n", 3);
+		moves++;
+	}
 }
