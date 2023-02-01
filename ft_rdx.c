@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rdx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:35 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/30 20:18:38 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/01 13:36:53 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_push_swap.h"
 
 //initializes the moves array and calls sort_stack function
 int	*calc_moves(int *order, int values)
@@ -17,10 +19,8 @@ int	*calc_moves(int *order, int values)
 	int	i;
 	int	*moves_temp;
 	int	*moves_start;
-	int	*a;
 	int	*b;
 
-	a = order;
 	b = malloc(sizeof(int) * values);
 	pos = 0;
 	i = 0;
@@ -30,10 +30,11 @@ int	*calc_moves(int *order, int values)
 	moves_start = moves_temp;
 	while (i < pos)
 	{
-		sort_stack(a, b, moves_temp, values, i++);
+		sort_stack(order, b, moves_temp, values, i++);
 		while (*moves_temp)
 			moves_temp++;
 	}
+	free(b);
 	return (moves_start);
 }
 

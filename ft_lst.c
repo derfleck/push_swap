@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/30 20:01:37 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:37:44 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ void	list_ass(t_value *src, t_value *dst)
 	dst->sorted = src->sorted;
 	dst->value = src->value;
 	dst->str = src->str;
+}
+
+//frees list node by node
+void	free_list(t_value *head, void *ptr1, void *ptr2, void *ptr3)
+{
+	t_value	*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(ptr1);
+	free(ptr2);
+	free(ptr3);
 }

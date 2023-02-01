@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_helper.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleitner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/30 20:20:28 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:34:14 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,34 @@ void	print_instr(int *moves)
 		else if (*moves == 3)
 			write(1, &"ra\n", 3);
 		moves++;
+	}
+}
+
+//recreates calloc from libft
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	char	*ptr;
+	size_t	val;
+
+	val = nmemb * size;
+	if (nmemb != 0 && val / nmemb != size)
+		return (NULL);
+	ptr = malloc(val);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, val);
+	return ((void *)ptr);
+}
+
+//fills array with null characters
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(s + i) = '\0';
+		i++;
 	}
 }
