@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/31 16:37:44 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/01 13:56:17 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_value	*ft_lstnew(t_value *prev, char *str, int sort)
 	if (prev != NULL)
 		prev->next = node;
 	node->str = str;
-	node->value = atoi(str);
+	node->value = ft_atoi(str);
 	node->pos_sor = 0;
 	node->pos_uns = sort;
 	node->sorted = 0;

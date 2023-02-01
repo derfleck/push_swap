@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/01 13:36:08 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/01 13:55:56 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,9 @@ int		*sort_array(t_value *arr, int values);
 void	print_instr(int *moves);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
+
+//helper2
+int		is_sorted(t_value *lst);
+int		ft_atoi(const char *nptr);
 
 #endif
