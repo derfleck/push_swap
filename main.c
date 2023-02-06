@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 15:43:14 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:36:14 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_value	**arg_check(int argc, char **argv)
 	arr = malloc((argc - 1) * sizeof(t_value *));
 	if (!arr)
 		return (NULL);
-	while (argv[i + 1])
+	while (i < argc - 1)
 	{
 		if (i == 0)
 			arr[i] = ft_lstnew(NULL, argv[i + 1], i);
@@ -47,7 +47,7 @@ void	big_sort(t_value **arr, int argc)
 	int	*sort;
 	int	*moves;
 
-	lst_check(*arr);
+	lst_check(arr);
 	quicksort_list(*arr, ft_lstlast(*arr));
 	relabel(*arr);
 	sort = sort_array(*arr, argc - 1);
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	if (arr == NULL)
 		return (0);
 	if (argc > 6)
-		big_sort (arr, argc);
+		big_sort(arr, argc);
 	return (0);
 }
 

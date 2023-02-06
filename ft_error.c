@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:19:01 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 15:19:28 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:36:15 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	error_check(char **args)
 	}
 }
 
-void	lst_check(t_value *lst)
+void	lst_check(t_value **lst)
 {
-	if (is_sorted(lst) || is_duplicate(lst))
+	if (is_sorted(*lst) || is_duplicate(*lst))
 		error(lst);
 }
 
-void	error(t_value *lst)
+void	error(t_value **lst)
 {
 	write(1, &"Error\n", 6);
-	free_list(lst, NULL, NULL, NULL);
+	free_list(*lst, lst, NULL, NULL);
 	exit(0);
 }
 

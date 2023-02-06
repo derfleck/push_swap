@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 15:09:24 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:36:12 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int		ft_isdigit(int c);
 int		ft_isspace(int c);
 
 //error handling
-void	lst_check(t_value *lst);
+void	lst_check(t_value **lst);
 void	error_check(char **args);
 int		is_sorted(t_value *lst);
 int		is_duplicate(t_value *lst);
-void	error(t_value *lst);
+void	error(t_value **lst);
 
 #endif
