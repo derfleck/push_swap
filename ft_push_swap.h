@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/01 13:55:56 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:09:24 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,16 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
 
 //helper2
+long	ft_atoi(const char *nptr);
+char	*ft_strchr(const char *s, int c);
+int		ft_isdigit(int c);
+int		ft_isspace(int c);
+
+//error handling
+void	lst_check(t_value *lst);
+void	error_check(char **args);
 int		is_sorted(t_value *lst);
-int		ft_atoi(const char *nptr);
+int		is_duplicate(t_value *lst);
+void	error(t_value *lst);
 
 #endif
