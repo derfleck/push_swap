@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 15:20:28 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:43:14 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // - check out bonus
 // - implement check for sorted/small ranges
 // - check for memory leaks
-// - replace atoi with ft_atoi
+// - replace calloc
 
 t_value	**arg_check(int argc, char **argv)
 {
@@ -42,6 +42,20 @@ t_value	**arg_check(int argc, char **argv)
 	return (arr);
 }
 
+void	big_sort(t_value **arr, int argc)
+{
+	int	*sort;
+	int	*moves;
+
+	lst_check(*arr);
+	quicksort_list(*arr, ft_lstlast(*arr));
+	relabel(*arr);
+	sort = sort_array(*arr, argc - 1);
+	moves = calc_moves(sort, argc - 1);
+	print_instr(moves);
+	free_list(*arr, moves, sort, arr);
+}
+
 int	main(int argc, char **argv)
 {
 	t_value	**arr;
@@ -53,12 +67,38 @@ int	main(int argc, char **argv)
 	arr = arg_check(argc, argv);
 	if (arr == NULL)
 		return (0);
-	lst_check(*arr);
-	quicksort_list(*arr, ft_lstlast(*arr));
-	relabel(*arr);
-	sort = sort_array(*arr, argc - 1);
-	moves = calc_moves(sort, argc - 1);
-	print_instr(moves);
-	free_list(*arr, moves, sort, arr);
+	if (argc > 6)
+		big_sort (arr, argc);
 	return (0);
 }
+
+/*
+for 3:
+if last == max && first != min
+	sa
+if first == max && last == min
+	sa, rra
+if first == max && last != min
+	ra
+if first == min && last != max
+	sa, ra
+if last == min && first != max
+	rra
+	
+for 5:
+always first pb, pb, then use for 3 on stack a
+
+then:
+if b != max && b (not empty)
+	if a < b
+		ra
+	else
+		pa
+else if b == max && b (not empty)
+	if a != min
+		ra
+	else
+		pa, ra
+else if !b && a != min
+	ra
+*/

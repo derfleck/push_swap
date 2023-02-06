@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:35 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/01 13:57:01 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:38:33 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	*calc_moves(int *order, int values)
 //pa = 1
 //pb = 2
 //ra = 3
+//rra = 4
+//sa = 5
 void	sort_stack(int *a, int *b, int *moves, int values, int pos)
 {
 	int	i;
