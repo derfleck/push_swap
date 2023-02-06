@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 16:36:14 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:07:17 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,30 @@ int	main(int argc, char **argv)
 	arr = arg_check(argc, argv);
 	if (arr == NULL)
 		return (0);
-	if (argc > 6)
+	if (argc == 4)
+	{
+		moves = res_arr(arr, argc);
+		small_sort(moves);
+		free(moves);
+	}
+	else if (argc > 6)
 		big_sort(arr, argc);
 	return (0);
 }
 
 /*
 for 3:
-if last == max && first != min
-	sa
 if first == max && last == min
 	sa, rra
 if first == max && last != min
 	ra
+if first != max && last == min
+	rra
 if first == min && last != max
 	sa, ra
-if last == min && first != max
-	rra
+if first != min && last == max 
+	sa
+
 	
 for 5:
 always first pb, pb, then use for 3 on stack a

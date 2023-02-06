@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 16:36:12 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/06 18:06:02 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,10 @@ void	error_check(char **args);
 int		is_sorted(t_value *lst);
 int		is_duplicate(t_value *lst);
 void	error(t_value **lst);
+
+//small sorting (up to 3)
+void	r_rotate(int *values, int len);
+void	small_sort(int *val);
+int		*res_arr(t_value **arr, int argc);
 
 #endif

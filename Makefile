@@ -6,7 +6,7 @@
 #    By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 13:37:13 by mleitner          #+#    #+#              #
-#    Updated: 2023/02/06 15:08:46 by mleitner         ###   ########.fr        #
+#    Updated: 2023/02/06 18:06:15 by mleitner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ C_FILES = 	main.c \
 			ft_qs.c \
 			ft_rdx.c \
 			ft_helper2.c \
-			ft_error.c
+			ft_error.c \
+			ft_small.c
 O_FILES = ${C_FILES:.c=.o}
 CFLAGS += -Wall -Wextra -Werror
 NAME = push_swap
