@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:35 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 15:38:33 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/07 17:46:32 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,13 @@ void	push(int *src, int *dst, int len_src, int len_dst)
 	int	i;
 
 	i = 0;
-	while (len_dst > 1)
+	while (len_dst)
 	{
-		dst[len_dst - 1] = dst[len_dst - 2];
+		dst[len_dst] = dst[len_dst - 1];
 		len_dst--;
 	}
-	dst[0] = *src;
+	if (!len_dst)
+		dst[0] = *src;
 	while (i < len_src)
 	{
 		src[i] = src[i + 1];

@@ -6,7 +6,7 @@
 #    By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 13:37:13 by mleitner          #+#    #+#              #
-#    Updated: 2023/02/06 18:06:15 by mleitner         ###   ########.fr        #
+#    Updated: 2023/02/07 17:08:18 by mleitner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ C_FILES = 	main.c \
 			ft_error.c \
 			ft_small.c
 O_FILES = ${C_FILES:.c=.o}
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -g
 NAME = push_swap
 CC = cc
 
@@ -33,5 +33,5 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 re: fclean all
