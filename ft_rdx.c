@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:15:35 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/07 17:46:32 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:54:59 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	*calc_moves(int *order, int values)
 	int	i;
 	int	*moves_temp;
 	int	*moves_start;
-	int	*b;
 
-	b = malloc(sizeof(int) * values);
 	pos = 0;
 	i = 0;
 	while (to_power(2, pos) < values)
@@ -30,11 +28,10 @@ int	*calc_moves(int *order, int values)
 	moves_start = moves_temp;
 	while (i < pos)
 	{
-		sort_stack(order, b, moves_temp, values, i++);
+		sort_stack(order, moves_temp, values, i++);
 		while (*moves_temp)
 			moves_temp++;
 	}
-	free(b);
 	return (moves_start);
 }
 
@@ -43,16 +40,16 @@ int	*calc_moves(int *order, int values)
 //pa = 1
 //pb = 2
 //ra = 3
-//rra = 4
-//sa = 5
-void	sort_stack(int *a, int *b, int *moves, int values, int pos)
+void	sort_stack(int *a, int *moves, int values, int pos)
 {
 	int	i;
 	int	len_a;
 	int	len_b;
+	int	*b;
 
 	i = 0;
 	len_a = values;
+	b = malloc(sizeof(int) * values);
 	len_b = 0;
 	while (i < values)
 	{
@@ -64,16 +61,17 @@ void	sort_stack(int *a, int *b, int *moves, int values, int pos)
 		else
 		{
 			moves[i] = 2;
-			push(a, b, --len_a, ++len_b);
+			push(a, b, len_a--, len_b++);
 		}
 		i++;
 	}
 	while (len_b)
 	{
 		moves[i++] = 1;
-		push(b, a, --len_b, ++len_a);
+		push(b, a, len_b--, len_a++);
 	}
 	moves[i] = 0;
+	free(b);
 }
 
 //performs swap (sa/sb)
@@ -97,8 +95,7 @@ void	push(int *src, int *dst, int len_src, int len_dst)
 		dst[len_dst] = dst[len_dst - 1];
 		len_dst--;
 	}
-	if (!len_dst)
-		dst[0] = *src;
+	dst[0] = *src;
 	while (i < len_src)
 	{
 		src[i] = src[i + 1];

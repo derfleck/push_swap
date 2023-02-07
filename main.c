@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/07 17:08:46 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:05:09 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void	medium_sort(int *val, int num)
 	free(b);
 	while (val[0] != min)
 	{
-		printf("val: %i", val[0]);
 		rotate(val, num);
 		write(1, &"ra\n", 3);
 	}
@@ -146,7 +145,6 @@ int	main(int argc, char **argv)
 {
 	t_value	**arr;
 	int		i;
-	//int		*sort;
 	int		*moves;
 
 	i = 0;

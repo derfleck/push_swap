@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 18:06:02 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:56:47 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	relabel(t_value *lst);
 
 //radix sort
 int		*calc_moves(int *order, int values);
-void	sort_stack(int *a, int *b, int *moves, int values, int pos);
+void	sort_stack(int *a, int *moves, int values, int pos);
 void	swap(int *a, int *b);
 void	push(int *src, int *dst, int len_src, int len_dst);
 void	rotate(int *values, int len);
