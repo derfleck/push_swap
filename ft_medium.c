@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:05:26 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:38:39 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,10 @@ void	medium_sort(int *val, int num)
 {
 	int	*b;
 	int	len_b;
-	//int	max;
 	//int	min;
 
 	len_b = 0;
 	b = malloc(sizeof(int) * (num - 3));
-	//max = find_max(val, num);
-	//min = find_min(val, num);
 	while (len_b <= (num - 3))
 	{
 		push(&val[0], &b[0], num--, len_b++);

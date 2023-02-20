@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:16:52 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:05:14 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:36:07 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_cntwrds(char **s, char c)
 	}
 	return (words);
 }
-
 
 char	*ft_strcpy(char *s, char c)
 {

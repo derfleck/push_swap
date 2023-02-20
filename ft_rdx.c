@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 14:39:41 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:13:49 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,38 @@ int	*calc_moves(int *order, int values)
 	return (moves_start);
 }
 
+t_set	*set_settings(int *a, int *b, int len_a, int len_b)
+{
+	t_set	*set;
+
+	set = malloc(sizeof(t_set));
+	set->a = a;
+	set->b = b;
+	set->len_a = len_a;
+	set->len_b = len_b;
+	return (set);
+}
+
+//checks which move to perform
+void	perform_moves(t_set	*set, int step)
+{
+	if (step == 1)
+	{
+		set->moves[set->i++] = 1;
+		push(set->b, set->a, set->len_b--, set->len_a++);
+	}
+	else if (step == 2)
+	{
+		set->moves[set->i++] = 2;
+		push(set->a, set->b, set->len_a--, set->len_b++);
+	}
+	else if (step == 3)
+	{
+		set->moves[set->i++] = 3;
+		rotate(set->a, set->len_a);
+	}
+}
+
 //perform radix sort on binary value
 //stop = 0
 //pa = 1
@@ -42,6 +74,7 @@ int	*calc_moves(int *order, int values)
 //ra = 3
 void	sort_stack(int *a, int *moves, int values, int pos)
 {
+	/*
 	int	i;
 	int	len_a;
 	int	len_b;
@@ -51,27 +84,23 @@ void	sort_stack(int *a, int *moves, int values, int pos)
 	len_a = values;
 	b = malloc(sizeof(int) * values);
 	len_b = 0;
-	while (i < values)
+	*/
+	t_set	*set;
+
+	set = set_settings(a, malloc(sizeof(int) * values), values, 0);
+	set->moves = moves;
+	while (set->i < values)
 	{
 		if ((a[0] >> pos) & 0x01)
-		{
-			moves[i] = 3;
-			rotate(a, len_a);
-		}
+			perform_moves(set, 3);
 		else
-		{
-			moves[i] = 2;
-			push(a, b, len_a--, len_b++);
-		}
-		i++;
+			perform_moves(set, 2);
+		set->i++;
 	}
-	while (len_b)
-	{
-		moves[i++] = 1;
-		push(b, a, len_b--, len_a++);
-	}
-	moves[i] = 0;
-	free(b);
+	while (set->len_b)
+		perform_moves(set, 1);
+	moves[set->i] = 0;
+	free(set->b);
 }
 
 //performs swap (sa/sb)

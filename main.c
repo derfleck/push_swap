@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:30:47 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:35:22 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,37 +46,11 @@ t_value	**arg_check(int argc, char **argv)
 	return (arr);
 }
 
-/*
-t_value	**arg_check(int argc, char **argv)
-{
-	int		i;
-	t_value	**arr;
-
-	if (argc < 2)
-		return (NULL);
-	i = 0;
-	error_check(argv);
-	arr = malloc((argc - 1) * sizeof(t_value *));
-	if (!arr)
-		return (NULL);
-	while (i < argc - 1)
-	{
-		if (i == 0)
-			arr[i] = ft_lstnew(NULL, argv[i + 1], i);
-		else
-			arr[i] = ft_lstnew(arr[i - 1], argv[i + 1], i);
-		i++;
-	}
-	return (arr);
-}
-*/
-
 void	big_sort(t_value **arr, int argc)
 {
 	int	*sort;
 	int	*moves;
 
-	//lst_check(arr);
 	quicksort_list(*arr, ft_lstlast(*arr));
 	relabel(*arr);
 	sort = sort_array(*arr, argc - 1);
@@ -112,32 +86,6 @@ int	main(int argc, char **argv)
 		big_sort(arr, argc);
 	return (0);
 }
-
-/*
-int	main(int argc, char **argv)
-{
-	t_value	**arr;
-	int		i;
-	int		*moves;
-
-	i = 0;
-	arr = arg_check(argc, argv);
-	if (arr == NULL)
-		return (0);
-	if (argc >= 3 && argc <= 6)
-	{
-		moves = res_arr(arr, argc);
-		if (argc == 4)
-			small_sort(moves);
-		else
-			medium_sort(moves, argc - 1);
-		free(moves);
-	}
-	else
-		big_sort(arr, argc);
-	return (0);
-}
-*/
 
 /*
 for 3:

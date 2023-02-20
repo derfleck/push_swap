@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:11:57 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:06:37 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_set {
 	int	*moves;
 	int	len_a;
 	int	len_b;
-	int	pos;
+	int	i;
 }	t_set;
 
 //list functions
