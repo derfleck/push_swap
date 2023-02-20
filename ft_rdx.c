@@ -6,34 +6,11 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 18:13:49 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:45:11 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-//initializes the moves array and calls sort_stack function
-int	*calc_moves(int *order, int values)
-{
-	int	pos;
-	int	i;
-	int	*moves_temp;
-	int	*moves_start;
-
-	pos = 0;
-	i = 0;
-	while (to_power(2, pos) < values)
-		pos++;
-	moves_temp = calloc(pos * values * 2, sizeof(int));
-	moves_start = moves_temp;
-	while (i < pos)
-	{
-		sort_stack(order, moves_temp, values, i++);
-		while (*moves_temp)
-			moves_temp++;
-	}
-	return (moves_start);
-}
 
 t_set	*set_settings(int *a, int *b, int len_a, int len_b)
 {
@@ -45,6 +22,25 @@ t_set	*set_settings(int *a, int *b, int len_a, int len_b)
 	set->len_a = len_a;
 	set->len_b = len_b;
 	return (set);
+}
+
+//initializes the moves array and calls sort_stack function
+int	*calc_moves(int *order, int values)
+{
+	int		pos;
+	int		i;
+	t_set	*set;
+
+	pos = 0;
+	i = 0;
+	while (to_power(2, pos) < values)
+		pos++;
+	set = set_settings(order, malloc(sizeof(int) * values), values, 0);
+	set->moves = calloc(pos * values * 2, sizeof(int));
+	while (i < pos)
+		sort_stack(set, i++);
+	set->moves[set->i] = 0;
+	return (set->moves);
 }
 
 //checks which move to perform
@@ -72,35 +68,22 @@ void	perform_moves(t_set	*set, int step)
 //pa = 1
 //pb = 2
 //ra = 3
-void	sort_stack(int *a, int *moves, int values, int pos)
+void	sort_stack(t_set *set, int pos)
 {
-	/*
 	int	i;
-	int	len_a;
-	int	len_b;
-	int	*b;
 
 	i = 0;
-	len_a = values;
-	b = malloc(sizeof(int) * values);
-	len_b = 0;
-	*/
-	t_set	*set;
-
-	set = set_settings(a, malloc(sizeof(int) * values), values, 0);
-	set->moves = moves;
-	while (set->i < values)
+	while (i < set->len_a)
 	{
-		if ((a[0] >> pos) & 0x01)
+		if ((set->a[0] >> pos) & 0x01)
 			perform_moves(set, 3);
 		else
 			perform_moves(set, 2);
-		set->i++;
+		i++;
 	}
 	while (set->len_b)
 		perform_moves(set, 1);
-	moves[set->i] = 0;
-	free(set->b);
+	//free(set->b);
 }
 
 //performs swap (sa/sb)
