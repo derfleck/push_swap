@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/07 18:35:59 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:43:49 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	print_instr(int *moves)
 			write(1, &"pb\n", 3);
 		else if (*moves == 3)
 			write(1, &"ra\n", 3);
+		else if (*moves == 4)
+			write(1, &"rb\n", 3);
 		moves++;
 	}
 }

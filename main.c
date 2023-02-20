@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/07 18:05:09 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:30:47 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,34 @@
 // - check for memory leaks
 // - replace calloc
 
+t_value	**arg_check(int argc, char **argv)
+{
+	int		i;
+	char	**split;
+	t_value	**arr;
+
+	if (argc < 2)
+		exit(1);
+	i = 0;
+	ill_chr(argv);
+	split = ft_split(argv, 32);
+	range_chk(split);
+	arr = malloc((ft_cntwrds(argv, 32)) * sizeof(t_value *));
+	if (!arr)
+		return (NULL);
+	while (i < ft_cntwrds(argv, 32))
+	{
+		if (i == 0)
+			arr[i] = ft_lstnew(NULL, split[i], i);
+		else
+			arr[i] = ft_lstnew(arr[i - 1], split[i], i);
+		i++;
+	}
+	empty_args(split);
+	return (arr);
+}
+
+/*
 t_value	**arg_check(int argc, char **argv)
 {
 	int		i;
@@ -41,104 +69,20 @@ t_value	**arg_check(int argc, char **argv)
 	}
 	return (arr);
 }
+*/
 
 void	big_sort(t_value **arr, int argc)
 {
 	int	*sort;
 	int	*moves;
 
-	lst_check(arr);
+	//lst_check(arr);
 	quicksort_list(*arr, ft_lstlast(*arr));
 	relabel(*arr);
 	sort = sort_array(*arr, argc - 1);
 	moves = calc_moves(sort, argc - 1);
 	print_instr(moves);
 	free_list(*arr, moves, sort, arr);
-}
-
-int	find_max(int *val, int num)
-{
-	int	i;
-	int	max;
-
-	i = 1;
-	max = val[0];
-	while (i < num)
-	{
-		if (val[i] > max)
-			max = val[i];
-		i++;
-	}
-	return (max);
-}
-
-int	find_min(int *val, int num)
-{
-	int	i;
-	int	min;
-
-	i = 1;
-	min = val[0];
-	while (i < num)
-	{
-		if (val[i] < min)
-			min = val[i];
-		i++;
-	}
-	return (min);
-}
-
-void	medium_sort(int *val, int num)
-{
-	int	*b;
-	int	len_b;
-	int	max;
-	int	min;
-
-	len_b = 0;
-	b = malloc(sizeof(int) * (num - 3));
-	max = find_max(val, num);
-	min = find_min(val, num);
-	while (len_b <= (num - 3))
-	{
-		push(&val[0], &b[0], num--, len_b++);
-		write(1, &"pb\n", 3);
-	}
-	small_sort(val);
-	if (b[1] > b[0] && len_b == 2)
-	{
-		swap(&b[0], &b[1]);
-		write(1, &"sb\n", 3);
-	}
-	while (len_b)
-	{
-		if (b[0] == max)
-		{
-			while (val[0] != min)
-			{
-				rotate(val, num);
-				write(1, &"ra\n", 3);
-			}
-			push(b, val, len_b--, num++);
-			write(1, &"pa\n", 3);
-		}
-		else
-		{
-			while (val[0] < b[0])
-			{
-				rotate(val, num);
-				write(1, &"ra\n", 3);
-			}
-			push(b, val, len_b--, num++);
-			write(1, &"pa\n", 3);
-		}
-	}
-	free(b);
-	while (val[0] != min)
-	{
-		rotate(val, num);
-		write(1, &"ra\n", 3);
-	}
 }
 
 int	main(int argc, char **argv)
@@ -151,7 +95,11 @@ int	main(int argc, char **argv)
 	arr = arg_check(argc, argv);
 	if (arr == NULL)
 		return (0);
-	if (argc >= 4 && argc <= 6)
+	if (argc == 3)
+	{
+		write(1, &"sa\n", 3);
+	}
+	else if (argc > 3 && argc <= 6)
 	{
 		moves = res_arr(arr, argc);
 		if (argc == 4)
@@ -164,6 +112,32 @@ int	main(int argc, char **argv)
 		big_sort(arr, argc);
 	return (0);
 }
+
+/*
+int	main(int argc, char **argv)
+{
+	t_value	**arr;
+	int		i;
+	int		*moves;
+
+	i = 0;
+	arr = arg_check(argc, argv);
+	if (arr == NULL)
+		return (0);
+	if (argc >= 3 && argc <= 6)
+	{
+		moves = res_arr(arr, argc);
+		if (argc == 4)
+			small_sort(moves);
+		else
+			medium_sort(moves, argc - 1);
+		free(moves);
+	}
+	else
+		big_sort(arr, argc);
+	return (0);
+}
+*/
 
 /*
 for 3:

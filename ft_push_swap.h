@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/07 18:56:47 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:11:57 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+//# include "../libft/libft.h"
 
 typedef struct s_value {
 	int				value;
@@ -29,9 +30,10 @@ typedef struct s_value {
 typedef struct s_set {
 	int	*a;
 	int	*b;
+	int	*moves;
 	int	len_a;
 	int	len_b;
-	int	*moves;
+	int	pos;
 }	t_set;
 
 //list functions
@@ -66,16 +68,35 @@ char	*ft_strchr(const char *s, int c);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
 
+/*
 //error handling
 void	lst_check(t_value **lst);
 void	error_check(char **args);
 int		is_sorted(t_value *lst);
 int		is_duplicate(t_value *lst);
 void	error(t_value **lst);
+*/
+
+//error handling
+void	ill_chr(char **str);
+void	empty_args(char **str);
+void	is_sorted(char **split);
+void	is_duplicate(char **split);
+void	range_chk(char **split);
+
+//argument parsing
+int		ft_cntwrds(char **s, char c);
+char	*ft_strcpy(char *s, char c);
+char	**ft_split(char **s, char c);
 
 //small sorting (up to 3)
 void	r_rotate(int *values, int len);
 void	small_sort(int *val);
 int		*res_arr(t_value **arr, int argc);
+
+//medium sorting (up to 5)
+int		find_max(int *val, int num);
+int		find_min(int *val, int num);
+void	medium_sort(int *val, int num);
 
 #endif
