@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:35:22 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:34:23 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 // - check for memory leaks
 // - replace calloc
 
-t_value	**arg_check(int argc, char **argv)
+t_value	**arg_check(int n, char **argv)
 {
 	int		i;
 	char	**split;
 	t_value	**arr;
 
-	if (argc < 2)
+	if (n == 1)
 		exit(1);
 	i = 0;
 	ill_chr(argv);
 	split = ft_split(argv, 32);
 	range_chk(split);
-	arr = malloc((ft_cntwrds(argv, 32)) * sizeof(t_value *));
+	arr = malloc(n * sizeof(t_value *));
 	if (!arr)
 		return (NULL);
-	while (i < ft_cntwrds(argv, 32))
+	while (i < n)
 	{
 		if (i == 0)
 			arr[i] = ft_lstnew(NULL, split[i], i);
@@ -62,28 +62,30 @@ void	big_sort(t_value **arr, int argc)
 int	main(int argc, char **argv)
 {
 	t_value	**arr;
-	int		i;
+	int		n;
 	int		*moves;
 
-	i = 0;
-	arr = arg_check(argc, argv);
+	if (argc < 2)
+		return (0);
+	n = ft_cntwrds(argv, 32);
+	arr = arg_check(n, argv);
 	if (arr == NULL)
 		return (0);
-	if (argc == 3)
+	if (n == 2)
 	{
 		write(1, &"sa\n", 3);
 	}
-	else if (argc > 3 && argc <= 6)
+	else if (n >= 3 && n <= 5)
 	{
-		moves = res_arr(arr, argc);
-		if (argc == 4)
+		moves = res_arr(arr, n + 1);
+		if (n == 3)
 			small_sort(moves);
 		else
-			medium_sort(moves, argc - 1);
+			medium_sort(moves, n);
 		free(moves);
 	}
 	else
-		big_sort(arr, argc);
+		big_sort(arr, n + 1);
 	return (0);
 }
 

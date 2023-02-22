@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:38:39 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:00:36 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,50 +44,66 @@ int	find_min(int *val, int num)
 	return (min);
 }
 
+int	arr_sorted(int *arr)
+{
+	int	i;
+
+	i = 1;
+	while (arr[i])
+	{
+		if (arr[i - 1] > arr[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	medium_sort(int *val, int num)
 {
 	int	*b;
 	int	len_b;
-	//int	min;
+	int	min;
+	int	max;
 
+	min = find_min(val, num);
+	max = find_max(val, num);
 	len_b = 0;
 	b = malloc(sizeof(int) * (num - 3));
-	while (len_b <= (num - 3))
+	while (num > 3)
 	{
 		push(&val[0], &b[0], num--, len_b++);
 		write(1, &"pb\n", 3);
 	}
-	small_sort(val);
-	if (b[1] > b[0] && len_b == 2)
+	if (!arr_sorted(val))
+		small_sort(val);
+	if (b[1] < b[0] && len_b == 2)
 	{
 		swap(&b[0], &b[1]);
 		write(1, &"sb\n", 3);
 	}
 	while (len_b)
 	{
-		if (b[0] == find_max(&b[0], len_b))
-		{
-			while (val[0] != find_min(val, num))
-			{
-				rotate(val, num);
-				write(1, &"ra\n", 3);
-			}
-			push(b, val, len_b--, num++);
-			write(1, &"pa\n", 3);
-		}
-		else
+		if (b[0] != max)
 		{
 			while (val[0] < b[0])
 			{
 				rotate(val, num);
 				write(1, &"ra\n", 3);
 			}
-			push(b, val, len_b--, num++);
-			write(1, &"pa\n", 3);
 		}
+		else
+		{
+			while (val[0] != find_min(val, num))
+			{
+				rotate(val, num);
+				write(1, &"ra\n", 3);
+			}
+		}
+		push(b, val, len_b--, num++);
+		write(1, &"pa\n", 3);
 	}
 	free(b);
-	while (val[0] != find_min(val, num))
+	while (val[0] != min)
 	{
 		rotate(val, num);
 		write(1, &"ra\n", 3);
