@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/22 17:00:44 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:17:04 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	perform_moves(t_set	*set, int step)
 	else if (step == 3)
 	{
 		set->moves[set->i++] = 3;
-		rotate(set->a, set->len_a);
+		rotate(set->a, set->len_a, 0);
 	}
 }
 
@@ -87,13 +87,17 @@ void	sort_stack(t_set *set, int pos)
 }
 
 //performs swap (sa/sb)
-void	swap(int *a, int *b)
+void	swap(int *a, int *b, int print)
 {
 	int	tmp;
 
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
+	if (print == 1)
+		write(1, &"sa\n", 3);
+	if (print == 2)
+		write(1, &"sb\n", 3);
 }
 
 //performs push (pa/pb)
@@ -116,7 +120,7 @@ void	push(int *src, int *dst, int len_src, int len_dst)
 }
 
 //performs rotate (ra/rb)
-void	rotate(int *values, int len)
+void	rotate(int *values, int len, int print)
 {
 	int	tmp;
 	int	i;
@@ -129,4 +133,8 @@ void	rotate(int *values, int len)
 		i++;
 	}
 	*(values + i) = tmp;
+	if (print == 1)
+		write(1, &"ra\n", 3);
+	if (print == 2)
+		write(1, &"rb\n", 3);
 }

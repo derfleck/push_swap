@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/22 17:00:36 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:30:23 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,35 +77,23 @@ void	medium_sort(int *val, int num)
 	if (!arr_sorted(val))
 		small_sort(val);
 	if (b[1] < b[0] && len_b == 2)
-	{
-		swap(&b[0], &b[1]);
-		write(1, &"sb\n", 3);
-	}
+		swap(&b[0], &b[1], 2);
 	while (len_b)
 	{
-		if (b[0] != max)
+		if (b[0] != max && find_max(val, num) > b[0])
 		{
 			while (val[0] < b[0])
-			{
-				rotate(val, num);
-				write(1, &"ra\n", 3);
-			}
+				rotate(val, num, 1);
 		}
 		else
 		{
 			while (val[0] != find_min(val, num))
-			{
-				rotate(val, num);
-				write(1, &"ra\n", 3);
-			}
+				rotate(val, num, 1);
 		}
 		push(b, val, len_b--, num++);
 		write(1, &"pa\n", 3);
 	}
 	free(b);
 	while (val[0] != min)
-	{
-		rotate(val, num);
-		write(1, &"ra\n", 3);
-	}
+		rotate(val, num, 1);
 }

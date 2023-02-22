@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:04:59 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:27:54 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:20:34 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	small_sort(int *val)
 {
 	if (val[0] > val[1] && val[0] > val[2] && val[2] < val[1])
 	{
-		swap(&val[0], &val[2]);
+		swap(&val[0], &val[2], 0);
 		write(1, &"sa\nrra\n", 7);
 	}
 	else if (val[0] > val[1] && val[0] > val[2] && val[2] > val[1])
 	{
-		rotate(&val[0], 3);
+		rotate(&val[0], 3, 0);
 		write(1, &"ra\n", 3);
 	}
 	else if (val[2] < val[0] && val[2] < val[1] && val[0] < val[1])
@@ -46,12 +46,12 @@ void	small_sort(int *val)
 	}
 	else if (val[0] < val[1] && val[0] < val[2] && val[2] < val[1])
 	{
-		swap(&val[1], &val[2]);
+		swap(&val[1], &val[2], 0);
 		write(1, &"sa\nra\n", 6);
 	}
 	else if (val[2] > val[0] && val[2] > val[1] && val[0] > val[1])
 	{
-		swap(&val[0], &val[1]);
+		swap(&val[0], &val[1], 0);
 		write(1, &"sa\n", 3);
 	}
 }
