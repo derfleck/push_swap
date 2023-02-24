@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/22 17:11:42 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:23:10 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-//# include "../libft/libft.h"
 
 typedef struct s_value {
 	int				value;
-	char			*str;
 	int				pos_sor;
 	int				pos_uns;
-	int				sorted;
+	char			*str;
 	struct s_value	*next;
 }	t_value;
 
@@ -90,9 +88,9 @@ char	*ft_strcpy(char *s, char c);
 char	**ft_split(char **s, char c);
 
 //small sorting (up to 3)
-void	r_rotate(int *values, int len);
+void	r_rotate(int *values, int len, int print);
 void	small_sort(int *val);
-int		*res_arr(t_value **arr, int argc);
+int		*res_arr(t_value **arr, int n);
 
 //medium sorting (up to 5)
 int		find_max(int *val, int num);

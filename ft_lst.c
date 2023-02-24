@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/06 17:02:26 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:40:32 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_value	*ft_lstnew(t_value *prev, char *str, int sort)
 	node->value = (int)ft_atoi(str);
 	node->pos_sor = 0;
 	node->pos_uns = sort;
-	node->sorted = 0;
 	node->next = NULL;
 	return (node);
 }
@@ -51,7 +50,6 @@ void	list_ass(t_value *src, t_value *dst)
 {
 	dst->pos_sor = src->pos_sor;
 	dst->pos_uns = src->pos_uns;
-	dst->sorted = src->sorted;
 	dst->value = src->value;
 	dst->str = src->str;
 }
@@ -64,6 +62,7 @@ void	free_list(t_value *head, void *ptr1, void *ptr2, void *ptr3)
 	while (head != NULL)
 	{
 		tmp = head;
+		free(tmp->str);
 		head = head->next;
 		free(tmp);
 	}

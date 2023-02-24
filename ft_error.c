@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:19:01 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:35:36 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:20:26 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ill_chr(char **str)
 	}
 }
 
+//deletes splitted arguments when error occurs
 void	empty_args(char **str)
 {
 	int	i;
@@ -51,6 +52,7 @@ void	empty_args(char **str)
 	free(str);
 }
 
+//checks if arguments are sorted
 void	is_sorted(char **split)
 {
 	int	i;
@@ -71,6 +73,7 @@ void	is_sorted(char **split)
 	}
 }
 
+//checks if arguments contain duplicates
 void	is_duplicate(char **split)
 {
 	int	i;
@@ -99,6 +102,7 @@ void	is_duplicate(char **split)
 	}
 }
 
+//checks if argument is outside of int range
 void	range_chk(char **split)
 {
 	int	i;

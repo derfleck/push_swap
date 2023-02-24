@@ -6,18 +6,14 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/21 12:34:23 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:10:32 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
 //TODO: - Documentation
-// - Error handling (no strings)
-// - check out bonus
-// - implement check for sorted/small ranges
 // - check for memory leaks
-// - replace calloc
 
 t_value	**arg_check(int n, char **argv)
 {
@@ -25,10 +21,10 @@ t_value	**arg_check(int n, char **argv)
 	char	**split;
 	t_value	**arr;
 
-	if (n == 1)
-		exit(1);
 	i = 0;
 	ill_chr(argv);
+	if (n == 1)
+		exit(1);
 	split = ft_split(argv, 32);
 	range_chk(split);
 	arr = malloc(n * sizeof(t_value *));
@@ -42,19 +38,19 @@ t_value	**arg_check(int n, char **argv)
 			arr[i] = ft_lstnew(arr[i - 1], split[i], i);
 		i++;
 	}
-	empty_args(split);
+	free(split[i]);
 	return (arr);
 }
 
-void	big_sort(t_value **arr, int argc)
+void	big_sort(t_value **arr, int n)
 {
 	int	*sort;
 	int	*moves;
 
 	quicksort_list(*arr, ft_lstlast(*arr));
 	relabel(*arr);
-	sort = sort_array(*arr, argc - 1);
-	moves = calc_moves(sort, argc - 1);
+	sort = sort_array(*arr, n);
+	moves = calc_moves(sort, n);
 	print_instr(moves);
 	free_list(*arr, moves, sort, arr);
 }
@@ -77,7 +73,7 @@ int	main(int argc, char **argv)
 	}
 	else if (n >= 3 && n <= 5)
 	{
-		moves = res_arr(arr, n + 1);
+		moves = res_arr(arr, n);
 		if (n == 3)
 			small_sort(moves);
 		else
@@ -85,7 +81,7 @@ int	main(int argc, char **argv)
 		free(moves);
 	}
 	else
-		big_sort(arr, n + 1);
+		big_sort(arr, n);
 	return (0);
 }
 

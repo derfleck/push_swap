@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:06:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/01/31 15:09:25 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:53:18 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	swap_nodes(t_value	*src, t_value *dst)
 {
 	t_value	*tmp;
 
-	if (!src || !dst)
+	if (!src || !dst || src == dst)
 		return ;
-	tmp = ft_lstnew(NULL, dst->str, dst->pos_uns);
-	list_ass(src, dst);
-	list_ass(tmp, src);
+	tmp = ft_lstnew(NULL, src->str, src->pos_uns);
+	list_ass(dst, src);
+	list_ass(tmp, dst);
 	free(tmp);
 }
 
@@ -36,7 +36,7 @@ t_value	*partition(t_value *first, t_value *last)
 	pivot = first;
 	while (store != NULL && store != last)
 	{
-		if (store->value < last-> value)
+		if (store->value < last->value)
 		{
 			pivot = first;
 			swap_nodes(first, store);

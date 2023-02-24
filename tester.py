@@ -3,14 +3,14 @@ import subprocess
 import statistics
 
 # Define the number of tests to run for each number of arguments
-num_runs = 100
+num_runs = 500
 
 # Define the number of arguments to test
 num_tests = [3, 5, 100, 500]
 
 # Define the range of unsigned integer values to use as arguments
-min_val = 0
-max_val = 1000000
+min_val = -2147483648
+max_val = 2147483647
 
 # Initialize empty lists to store the number of lines for each test
 num_lines_3 = []
@@ -24,7 +24,7 @@ for num in num_tests:
     for i in range(num_runs):
         # Generate a list of unique random unsigned integers within the specified range
         args = random.sample(range(min_val, max_val), num)
-
+        print(args)
         # Convert the arguments list to a string with spaces between each value
         args_str = [str(arg) for arg in args]
         # Call the push_swap executable with the generated arguments

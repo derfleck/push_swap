@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/22 17:30:23 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:01:15 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	find_min(int *val, int num)
 	return (min);
 }
 
-int	arr_sorted(int *arr)
+int	arr_sorted(int *arr, int num)
 {
 	int	i;
 
 	i = 1;
-	while (arr[i])
+	while (i < num)
 	{
 		if (arr[i - 1] > arr[i])
 			return (0);
@@ -58,15 +58,22 @@ int	arr_sorted(int *arr)
 	return (1);
 }
 
+void	print_stack(int *arr, int num, char stk)
+{
+	int	i;
+
+	i = 0;
+	printf("Stack %c: ", stk);
+	while (i < num)
+		printf("%i ", arr[i++]);
+	printf("\n");
+}
+
 void	medium_sort(int *val, int num)
 {
 	int	*b;
 	int	len_b;
-	int	min;
-	int	max;
 
-	min = find_min(val, num);
-	max = find_max(val, num);
 	len_b = 0;
 	b = malloc(sizeof(int) * (num - 3));
 	while (num > 3)
@@ -74,26 +81,26 @@ void	medium_sort(int *val, int num)
 		push(&val[0], &b[0], num--, len_b++);
 		write(1, &"pb\n", 3);
 	}
-	if (!arr_sorted(val))
+	if (!arr_sorted(val, num))
 		small_sort(val);
 	if (b[1] < b[0] && len_b == 2)
 		swap(&b[0], &b[1], 2);
 	while (len_b)
 	{
-		if (b[0] != max && find_max(val, num) > b[0])
+		if (b[0] < find_min(val, num) || b[0] > find_max(val, num))
 		{
-			while (val[0] < b[0])
+			while (val[0] != find_min(val, num))
 				rotate(val, num, 1);
 		}
 		else
 		{
-			while (val[0] != find_min(val, num))
+			while (val[0] < b[0])
 				rotate(val, num, 1);
 		}
 		push(b, val, len_b--, num++);
 		write(1, &"pa\n", 3);
 	}
 	free(b);
-	while (val[0] != min)
+	while (val[0] != find_min(val, num))
 		rotate(val, num, 1);
 }
