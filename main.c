@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/24 12:10:32 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:39:44 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,85 @@
 
 //TODO: - Documentation
 // - check for memory leaks
+// - restructure (no linked list for short/medium sort)
 
-t_value	**arg_check(int n, char **argv)
+int	*arg_check(int n, char **argv)
 {
 	int		i;
 	char	**split;
-	t_value	**arr;
+	int		*arr;
 
 	i = 0;
-	ill_chr(argv);
+	ill_chr(argv, n);
 	if (n == 1)
 		exit(1);
 	split = ft_split(argv, 32);
-	range_chk(split);
-	arr = malloc(n * sizeof(t_value *));
+	range_chk(split, n);
+	arr = malloc(n * sizeof(int));
 	if (!arr)
 		return (NULL);
 	while (i < n)
 	{
-		if (i == 0)
-			arr[i] = ft_lstnew(NULL, split[i], i);
-		else
-			arr[i] = ft_lstnew(arr[i - 1], split[i], i);
+		arr[i] = ft_atoi(split[i]);
 		i++;
 	}
-	free(split[i]);
+	empty_args(split, n);
 	return (arr);
 }
 
-void	big_sort(t_value **arr, int n)
+/* 
+int	*arg_check(int n, char **argv)
 {
-	int	*sort;
-	int	*moves;
+	int		i;
+	char	**split;
+	int		*arr;
 
-	quicksort_list(*arr, ft_lstlast(*arr));
-	relabel(*arr);
-	sort = sort_array(*arr, n);
+	i = 0;
+	ill_chr(argv);
+	if (n < 2)
+		exit(1);
+	split = ft_split(argv, 32);
+	range_chk(split);
+	arr = malloc(n * sizeof(int));
+	if (!arr)
+		return (NULL);
+	while (i < n)
+	{
+		arr[i] = ft_atoi(split[i]);
+		i++;
+	}
+} */
+
+void	big_sort(int *arr, int n)
+{
+	int		*sort;
+	int		*moves;
+	t_value	**llst;
+	int		i;
+
+	i = 0;
+	llst = malloc(sizeof(t_value *) * n);
+	while (i < n)
+	{
+		if (i == 0)
+			llst[i] = ft_lstnew(NULL, arr[i], i);
+		else
+			llst[i] = ft_lstnew(llst[i - 1], arr[i], i);
+		i++;
+	}
+	quicksort_list(*llst, ft_lstlast(*llst));
+	relabel(*llst);
+	sort = sort_array(*llst, n);
 	moves = calc_moves(sort, n);
 	print_instr(moves);
-	free_list(*arr, moves, sort, arr);
+	free_list(*llst, moves, sort, arr);
 }
 
 int	main(int argc, char **argv)
 {
-	t_value	**arr;
+	int		*arr;
 	int		n;
-	int		*moves;
+	//int		*moves;
 
 	if (argc < 2)
 		return (0);
@@ -73,12 +106,12 @@ int	main(int argc, char **argv)
 	}
 	else if (n >= 3 && n <= 5)
 	{
-		moves = res_arr(arr, n);
+		//moves = res_arr(arr, n);
 		if (n == 3)
-			small_sort(moves);
+			small_sort(arr);
 		else
-			medium_sort(moves, n);
-		free(moves);
+			medium_sort(arr, n);
+		free(arr);
 	}
 	else
 		big_sort(arr, n);

@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 13:48:23 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:36:22 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/25 10:45:25 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char c)
 {
-	if (c >= 48 && c <= 57)
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }

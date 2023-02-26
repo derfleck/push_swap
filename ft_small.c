@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:04:59 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/23 18:07:14 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:35:12 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	*res_arr(t_value **arr, int n)
 
 	i = 0;
 	val = malloc(sizeof(int) * n);
+	if (!val)
+		return (NULL);
 	while (i < n)
 	{
 		val[i] = arr[i]->value;

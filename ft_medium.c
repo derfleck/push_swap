@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/23 20:01:15 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:46:40 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	medium_sort(int *val, int num)
 	b = malloc(sizeof(int) * (num - 3));
 	while (num > 3)
 	{
-		push(&val[0], &b[0], num--, len_b++);
+		push(val, b, --num, len_b++);
 		write(1, &"pb\n", 3);
 	}
 	if (!arr_sorted(val, num))
@@ -97,7 +97,7 @@ void	medium_sort(int *val, int num)
 			while (val[0] < b[0])
 				rotate(val, num, 1);
 		}
-		push(b, val, len_b--, num++);
+		push(b, val, --len_b, num++);
 		write(1, &"pa\n", 3);
 	}
 	free(b);

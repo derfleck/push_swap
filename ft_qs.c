@@ -19,7 +19,7 @@ void	swap_nodes(t_value	*src, t_value *dst)
 
 	if (!src || !dst || src == dst)
 		return ;
-	tmp = ft_lstnew(NULL, src->str, src->pos_uns);
+	tmp = ft_lstnew(NULL, src->value, src->pos_uns);
 	list_ass(dst, src);
 	list_ass(tmp, dst);
 	free(tmp);

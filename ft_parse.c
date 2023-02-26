@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:16:52 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/20 17:36:07 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:21:31 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**ft_split(char **s, char c)
 	i = 1;
 	j = 0;
 	words = 0;
-	split = malloc(sizeof(char *) * (ft_cntwrds(s, c) + 1));
+	split = malloc(sizeof(char *) * ft_cntwrds(s, c));
 	while (s[i])
 	{
 		while (s[i][j] == c)
@@ -89,6 +89,5 @@ char	**ft_split(char **s, char c)
 			j = 0;
 		}
 	}
-	split[words] = 0;
 	return (split);
 }

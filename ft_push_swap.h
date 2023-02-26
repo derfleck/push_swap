@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/23 18:23:10 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:40:35 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_value {
 	int				value;
 	int				pos_sor;
 	int				pos_uns;
-	char			*str;
 	struct s_value	*next;
 }	t_value;
 
@@ -35,7 +34,7 @@ typedef struct s_set {
 }	t_set;
 
 //list functions
-t_value	*ft_lstnew(t_value *prev, char *str, int sort);
+t_value	*ft_lstnew(t_value *prev, int value, int sort);
 t_value	*ft_lstlast(t_value *lst);
 void	list_ass(t_value *src, t_value *dst);
 void	free_list(t_value *head, void *ptr1, void *ptr2, void *ptr3);
@@ -63,7 +62,7 @@ void	ft_bzero(void *s, size_t n);
 //helper2
 long	ft_atoi(const char *nptr);
 char	*ft_strchr(const char *s, int c);
-int		ft_isdigit(int c);
+int		ft_isdigit(char c);
 int		ft_isspace(int c);
 
 /*
@@ -76,11 +75,11 @@ void	error(t_value **lst);
 */
 
 //error handling
-void	ill_chr(char **str);
-void	empty_args(char **str);
-void	is_sorted(char **split);
-void	is_duplicate(char **split);
-void	range_chk(char **split);
+void	ill_chr(char **str, int n);
+void	empty_args(char **str, int n);
+void	is_sorted(char **split, int n);
+void	is_duplicate(char **split, int n);
+void	range_chk(char **split, int n);
 
 //argument parsing
 int		ft_cntwrds(char **s, char c);
