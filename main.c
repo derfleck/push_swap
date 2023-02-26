@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/26 15:39:44 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:58:22 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	big_sort(int *arr, int n)
 	moves = calc_moves(sort, n);
 	print_instr(moves);
 	free_list(*llst, moves, sort, arr);
+	free(llst);
 }
 
 int	main(int argc, char **argv)

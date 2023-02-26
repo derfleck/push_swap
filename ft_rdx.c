@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/25 11:29:11 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:32:26 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_set	*set_settings(int *a, int *b, int len_a, int len_b)
 	set->b = b;
 	set->len_a = len_a;
 	set->len_b = len_b;
+	set->i = 0;
 	return (set);
 }
 
@@ -30,12 +31,12 @@ void	perform_moves(t_set	*set, int step)
 	if (step == 1)
 	{
 		set->moves[set->i++] = 1;
-		push(set->b, set->a, set->len_b--, set->len_a++);
+		push(set->b, set->a, --(set->len_b), set->len_a++);
 	}
 	else if (step == 2)
 	{
 		set->moves[set->i++] = 2;
-		push(set->a, set->b, set->len_a--, set->len_b++);
+		push(set->a, set->b, --(set->len_a), set->len_b++);
 	}
 	else if (step == 3)
 	{
@@ -55,19 +56,23 @@ int	*calc_moves(int *order, int values)
 	int		pos;
 	int		i;
 	t_set	*set;
+	int 	*moves;
 
 	pos = 0;
 	i = 0;
 	while (to_power(2, pos) < values)
 		pos++;
 	set = set_settings(order, malloc(sizeof(int) * values), values, 0);
-	set->moves = calloc(pos * values * 2, sizeof(int));
+	set->moves = ft_calloc(pos * values * 2, sizeof(int));
 	while (i < pos)
 		sort_stack(set, i++);
 	while (set->len_b)
 		perform_moves(set, 1);
 	set->moves[set->i] = 0;
-	return (set->moves);
+	moves = set->moves;
+	free(set->b);
+	free(set);
+	return (moves);
 }
 
 //perform radix sort on binary value
