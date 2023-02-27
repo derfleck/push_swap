@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/26 16:32:26 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:23:03 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,30 @@ void	perform_moves(t_set	*set, int step)
 	}
 }
 
+//checks if both stacks are sorted
+int		lists_sorted(t_set *set)
+{
+	int	i;
+	int	sorted;
+
+	i = 1;
+	sorted = 1;
+	while (i < set->len_a && set->len_a > 1 && sorted)
+	{
+		if (set->a[i - 1] > set->a[i])
+			sorted = 0;
+		i++;
+	}
+	i = 1;
+	while (i < set->len_b && set->len_b > 1 && sorted)
+	{
+		if (set->b[i - 1] < set->b[i])
+			sorted = 0;
+		i++;
+	}
+	return (sorted);
+}
+
 //initializes the moves array and calls sort_stack function
 int	*calc_moves(int *order, int values)
 {
@@ -64,7 +88,7 @@ int	*calc_moves(int *order, int values)
 		pos++;
 	set = set_settings(order, malloc(sizeof(int) * values), values, 0);
 	set->moves = ft_calloc(pos * values * 2, sizeof(int));
-	while (i < pos)
+	while (i < pos && !lists_sorted(set))
 		sort_stack(set, i++);
 	while (set->len_b)
 		perform_moves(set, 1);
@@ -86,7 +110,7 @@ void	sort_stack(t_set *set, int pos)
 	int	i;
 
 	i = set->len_a;
-	while (i)
+	while (i && !lists_sorted(set))
 	{
 		if ((set->a[0] >> pos) & 0x01)
 			perform_moves(set, 3);
@@ -95,7 +119,7 @@ void	sort_stack(t_set *set, int pos)
 		i--;
 	}
 	i = set->len_b;
-	while (i)
+	while (i && !lists_sorted(set))
 	{
 		if ((set->b[0] >> (pos + 1)) & 0x01)
 			perform_moves(set, 1);
@@ -103,7 +127,6 @@ void	sort_stack(t_set *set, int pos)
 			perform_moves(set, 4);
 		i--;
 	}
-	//free(set->b);
 }
 
 //performs swap (sa/sb)
