@@ -6,27 +6,9 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:12:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/26 15:58:45 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:39:04 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//create new node of linked list
-/*t_value	*ft_lstnew(t_value *prev, char *str, int sort)
-{
-	t_value	*node;
-
-	node = malloc(sizeof(t_value));
-	if (!node)
-		return (NULL);
-	if (prev != NULL)
-		prev->next = node;
-	node->str = str;
-	node->value = (int)ft_atoi(str);
-	node->pos_sor = 0;
-	node->pos_uns = sort;
-	node->next = NULL;
-	return (node);
-}*/
 
 #include "ft_push_swap.h"
 
@@ -62,7 +44,7 @@ t_value	*ft_lstlast(t_value *lst)
 	return (lst2);
 }
 
-//helper function, just assigns values from src to dst
+//assigns values from src to dst
 void	list_ass(t_value *src, t_value *dst)
 {
 	dst->pos_sor = src->pos_sor;

@@ -6,31 +6,13 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:04:59 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/25 11:35:12 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:22:48 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	r_rotate(int *values, int len, int print)
-{
-	int	tmp;
-	int	i;
-
-	tmp = values[len - 1];
-	i = len - 1;
-	while (i)
-	{
-		*(values + i) = *(values + i - 1);
-		i--;
-	}
-	*(values + i) = tmp;
-	if (print == 1)
-		write(1, &"rra\n", 4);
-	else if (print == 2)
-		write(1, &"rrb\n", 4);
-}
-
+//performs optimal sort on three values
 void	small_sort(int *val)
 {
 	int	max;
@@ -56,6 +38,7 @@ void	small_sort(int *val)
 	}
 }
 
+/*
 int	*res_arr(t_value **arr, int n)
 {
 	int	i;
@@ -73,3 +56,4 @@ int	*res_arr(t_value **arr, int n)
 	free_list(*arr, arr, NULL, NULL);
 	return (val);
 }
+*/

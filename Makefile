@@ -19,7 +19,8 @@ C_FILES = 	main.c \
 			ft_error.c \
 			ft_small.c \
 			ft_medium.c \
-			ft_parse.c
+			ft_parse.c \
+			ft_instr.c
 O_FILES = ${C_FILES:.c=.o}
 CFLAGS += -Wall -Wextra -Werror -g
 NAME = push_swap

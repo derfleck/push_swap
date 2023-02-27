@@ -39,6 +39,7 @@ int	ft_cntwrds(char **s, char c)
 	return (words);
 }
 
+//copies string until a certain character occurs
 char	*ft_strcpy(char *s, char c)
 {
 	int		i;

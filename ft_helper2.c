@@ -6,12 +6,13 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 13:48:23 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/25 10:45:25 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:43:24 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+//checks if character is a space separator
 int	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
@@ -19,6 +20,7 @@ int	ft_isspace(int c)
 	return (0);
 }
 
+//checks if character is a digit
 int	ft_isdigit(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -26,6 +28,7 @@ int	ft_isdigit(char c)
 	return (0);
 }
 
+//performs atoi conversion
 long	ft_atoi(const char *nptr)
 {
 	int		i;
@@ -49,17 +52,4 @@ long	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (value * (long)pre);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != (unsigned char)c)
-		i++;
-	if (s[i] == (unsigned char)c)
-		return ((char *)s + i);
-	else
-		return (0);
 }

@@ -6,12 +6,13 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/25 11:46:40 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:35:50 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+//searches for max value in int array
 int	find_max(int *val, int num)
 {
 	int	i;
@@ -28,6 +29,7 @@ int	find_max(int *val, int num)
 	return (max);
 }
 
+//searches for min value in int array
 int	find_min(int *val, int num)
 {
 	int	i;
@@ -44,6 +46,7 @@ int	find_min(int *val, int num)
 	return (min);
 }
 
+//checks if int array is sorted (ascending)
 int	arr_sorted(int *arr, int num)
 {
 	int	i;
@@ -58,17 +61,8 @@ int	arr_sorted(int *arr, int num)
 	return (1);
 }
 
-void	print_stack(int *arr, int num, char stk)
-{
-	int	i;
-
-	i = 0;
-	printf("Stack %c: ", stk);
-	while (i < num)
-		printf("%i ", arr[i++]);
-	printf("\n");
-}
-
+//TODO: shorten this function
+//performs sort for stack of 4 to 5 values
 void	medium_sort(int *val, int num)
 {
 	int	*b;

@@ -6,15 +6,13 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/23 14:40:10 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:41:29 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-//math helper, performs to the power
-//used to convert binary to decimal
-//also used to calculate number of binary values
+//performs to the power
 int	to_power(int nb, int power)
 {
 	if (!power)
@@ -61,7 +59,7 @@ void	print_instr(int *moves)
 	}
 }
 
-//recreates calloc from libft
+//recreates calloc
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*ptr;

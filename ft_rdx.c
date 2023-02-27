@@ -6,12 +6,13 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 13:23:03 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:25:48 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
+//initializes settings struct and stores stack values
 t_set	*set_settings(int *a, int *b, int len_a, int len_b)
 {
 	t_set	*set;
@@ -51,7 +52,7 @@ void	perform_moves(t_set	*set, int step)
 }
 
 //checks if both stacks are sorted
-int		lists_sorted(t_set *set)
+int	lists_sorted(t_set *set)
 {
 	int	i;
 	int	sorted;
@@ -80,7 +81,7 @@ int	*calc_moves(int *order, int values)
 	int		pos;
 	int		i;
 	t_set	*set;
-	int 	*moves;
+	int		*moves;
 
 	pos = 0;
 	i = 0;
@@ -127,57 +128,4 @@ void	sort_stack(t_set *set, int pos)
 			perform_moves(set, 4);
 		i--;
 	}
-}
-
-//performs swap (sa/sb)
-void	swap(int *a, int *b, int print)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-	if (print == 1)
-		write(1, &"sa\n", 3);
-	if (print == 2)
-		write(1, &"sb\n", 3);
-}
-
-//performs push (pa/pb)
-void	push(int *src, int *dst, int len_src, int len_dst)
-{
-	int	i;
-
-	i = len_dst;
-	while (i)
-	{
-		dst[i] = dst[i - 1];
-		i--;
-	}
-	dst[0] = *src;
-	while (i < len_src)
-	{
-		src[i] = src[i + 1];
-		i++;
-	}
-}
-
-//performs rotate (ra/rb)
-void	rotate(int *values, int len, int print)
-{
-	int	tmp;
-	int	i;
-
-	tmp = *values;
-	i = 0;
-	while (i < len - 1)
-	{
-		*(values + i) = *(values + i + 1);
-		i++;
-	}
-	*(values + i) = tmp;
-	if (print == 1)
-		write(1, &"ra\n", 3);
-	else if (print == 2)
-		write(1, &"rb\n", 3);
 }

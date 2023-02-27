@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:06:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/23 14:53:18 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:40:12 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	swap_nodes(t_value	*src, t_value *dst)
 }
 
 //partitions linked list
-//also performs quicksort swap if value smaller than pivot value
+//performs quicksort swap if value smaller than pivot value
 t_value	*partition(t_value *first, t_value *last)
 {
 	t_value	*store;
