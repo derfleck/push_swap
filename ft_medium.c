@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 16:46:10 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:02:43 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,11 @@ void	medium_sort(int *val, int num)
 	}
 	if (!arr_sorted(val, num))
 		small_sort(val);
-	if (b[1] < b[0] && len_b == 2)
-		swap(&b[0], &b[1], 2);
+	if (len_b == 2)
+	{
+		if (b[1] < b[0])
+			swap(&b[0], &b[1], 2);
+	}
 	medium_sort_helper(val, b, num, len_b);
 	free(b);
 }

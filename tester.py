@@ -10,7 +10,7 @@ def main(argv):
     if int(argv[1]) > 0:
         num_runs = int(argv[1])
     else:
-        num_runs = 100
+        num_runs = 10
 
     # Define the number of arguments to test
     num_tests = [3, 5, 100, 500]
@@ -29,8 +29,9 @@ def main(argv):
     time_lines_5 = []
     time_lines_100 = []
     time_lines_500 = []
-    # Initialize a variable to store the number of errors
-    errors = 0
+    # Initialize variables to store the number of errors
+    chk_errors = 0
+    mem_errors = 0
 
     # Loop through the different number of tests to run
     for num in num_tests:
@@ -51,8 +52,14 @@ def main(argv):
             #Use the output of result and pass it to the checker executable
             checker = subprocess.run(["./checker"] + args_str, input=result.stdout, stdout=subprocess.PIPE)
             if checker.stdout != b'OK\n':
-                print("Error: " + args_str)
-                errors += 1
+                print("Error: " + " ".join(args_str))
+                chk_errors += 1
+            #run program with valgrind and check for memory leaks
+            valgrind = subprocess.run(["valgrind", "--leak-check=full", "--quiet", "./push_swap"] + args_str, stdout=subprocess.PIPE)
+            #Check if valgrind found any memory leaks
+            if valgrind.stdout.find(b"definitely lost:") != -1:
+                print(valgrind.stdout)
+                mem_errors += 1
             # Append the number of lines to the appropriate list based on the number of arguments
             if num == 3:
                 num_lines_3.append(num_lines)
@@ -87,7 +94,8 @@ def main(argv):
 
     # Print the results
     print(f"Number of runs: {num_runs}")
-    print(f"Errors: {errors}")
+    print(f"Checker errors: {chk_errors}")
+    print(f"Memory leaks: {mem_errors}")
     print(f"Average for 3 arguments: {avg_num_lines_3} Maximum: {max_num_lines_3} Execution time: {avg_time_lines_3:.03f}ms Maximum: {max_time_lines_3:.03f}ms")
     print(f"Average for 5 arguments: {avg_num_lines_5} Maximum: {max_num_lines_5} Execution time: {avg_time_lines_5:.03f}ms Maximum: {max_time_lines_5:.03f}ms")
     print(f"Average for 100 arguments: {avg_num_lines_100} Maximum: {max_num_lines_100} Execution time: {avg_time_lines_100:.03f}ms Maximum: {max_time_lines_100:.03f}ms")

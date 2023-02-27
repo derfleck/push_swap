@@ -20,7 +20,7 @@ void	ill_chr(char **str, int n)
 
 	i = 1;
 	j = 0;
-	while (i < n)
+	while (i < (n + 1))
 	{
 		while (str[i][j])
 		{

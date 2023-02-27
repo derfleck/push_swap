@@ -7,10 +7,21 @@ Create a program that is able to sort a set of integer values as quickly as poss
 
 Both rotate and swap can be executed for both stacks the same time (ss, rr, rrr), which saves instructions required.
 
+## Allowed external functions
+| function  | library  | description                       | used |
+|-----------|----------|-----------------------------------|------|
+| write     | unistd.h | write to a file descriptor        | yes  |
+| read      | unistd.h | read from a file descriptor       | no   |
+| malloc    | stdlib.h | allocates memory                  | yes  |
+| free      | stdlib.h | frees reserved memory             | yes  |
+| exit      | stdlib.h | causes normal process termination | yes  |
+| ft_printf | libft.h  | recreates printf functionality    | no   |
+
 ## Errors
-- some arguments aren't integers
-- some arguments are out of integer range
-- no duplicate values allowed
+Under certain circumstances, the program needs to display an "Error" message on the standard output, followed by a newline. Those situations are:  
+- arguments contain illegal characters and aren't valid integers (only -, digits and space characters are allowed - in that order)
+- arguments are out of integer range
+- duplicate values in arguments
 
 ## Requirements
 
@@ -20,6 +31,12 @@ Both rotate and swap can be executed for both stacks the same time (ss, rr, rrr)
  - [x] Allocated memory needs to be freed correctly (no memory leaks)
  - [x] No global variables
  - [ ] If no parameters are provided, the prompt needs to returned (no values)
- - [ ] Errors need to be handled (needs to show Error and new line)
+ - [ ] Errors need to be handled (see [Errors](#Errors))
 
 ## Solution
+
+
+## Tester
+- [Tester by gemartin99](https://github.com/gemartin99/Push-Swap-Tester): Good tester, but unfortunately **only for macOS** (shell script uses [leaks](https://www.unix.com/man-page/osx/1/leaks/) instead of valgrind)
+- [Tester by laisarena](https://github.com/laisarena/push_swap_tester): Simple and checks for most use cases, but unfortunately not for leaks
+- 

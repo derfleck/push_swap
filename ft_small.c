@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:04:59 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 14:22:48 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:16:29 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,3 @@ void	small_sort(int *val)
 		rotate(val, 3, 1);
 	}
 }
-
-/*
-int	*res_arr(t_value **arr, int n)
-{
-	int	i;
-	int	*val;
-
-	i = 0;
-	val = malloc(sizeof(int) * n);
-	if (!val)
-		return (NULL);
-	while (i < n)
-	{
-		val[i] = arr[i]->value;
-		i++;
-	}
-	free_list(*arr, arr, NULL, NULL);
-	return (val);
-}
-*/

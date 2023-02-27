@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:12:46 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 14:41:29 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:41:48 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	to_power(int nb, int power)
 	}
 }
 
-//writes original order to integer array
+//writes original order from linked list to integer array
 int	*sort_array(t_value *arr, int values)
 {
 	t_value	*lst2;
