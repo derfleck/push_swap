@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:59:25 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 14:35:50 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:46:10 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,28 @@ int	arr_sorted(int *arr, int num)
 	return (1);
 }
 
-//TODO: shorten this function
+//sorts stacks a and b for medium sort
+void	medium_sort_helper(int *a, int *b, int len_a, int len_b)
+{
+	while (len_b)
+	{
+		if (b[0] < find_min(a, len_a) || b[0] > find_max(a, len_a))
+		{
+			while (a[0] != find_min(a, len_a))
+				rotate(a, len_a, 1);
+		}
+		else
+		{
+			while (a[0] < b[0])
+				rotate(a, len_a, 1);
+		}
+		push(b, a, --len_b, len_a++);
+		write(1, &"pa\n", 3);
+	}
+	while (a[0] != find_min(a, len_a))
+		rotate(a, len_a, 1);
+}
+
 //performs sort for stack of 4 to 5 values
 void	medium_sort(int *val, int num)
 {
@@ -79,22 +100,6 @@ void	medium_sort(int *val, int num)
 		small_sort(val);
 	if (b[1] < b[0] && len_b == 2)
 		swap(&b[0], &b[1], 2);
-	while (len_b)
-	{
-		if (b[0] < find_min(val, num) || b[0] > find_max(val, num))
-		{
-			while (val[0] != find_min(val, num))
-				rotate(val, num, 1);
-		}
-		else
-		{
-			while (val[0] < b[0])
-				rotate(val, num, 1);
-		}
-		push(b, val, --len_b, num++);
-		write(1, &"pa\n", 3);
-	}
+	medium_sort_helper(val, b, num, len_b);
 	free(b);
-	while (val[0] != find_min(val, num))
-		rotate(val, num, 1);
 }
