@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:19:01 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/26 12:29:24 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:21:13 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ill_chr(char **str, int n)
 
 	i = 1;
 	j = 0;
-	while (i < (n + 1))
+	while (i < n)
 	{
 		while (str[i][j])
 		{

@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:03:19 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 19:51:22 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:14:45 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	empty_args(char **str, int n);
 void	is_sorted(char **split, int n);
 void	is_duplicate(char **split, int n);
 void	range_chk(char **split, int n);
-int		*arg_check(int n, char **argv);
+int		*arg_check(int n, char **argv, int argc);
 
 //list functions
 t_value	*ft_lstnew(t_value *prev, int value, int sort);

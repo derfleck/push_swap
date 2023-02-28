@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:06:20 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 16:29:36 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:20:11 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 // - restructure (no linked list for short/medium sort)
 
 //checks arguments, splits them and writes them to int array
-int	*arg_check(int n, char **argv)
+int	*arg_check(int n, char **argv, int argc)
 {
 	int		i;
 	char	**split;
 	int		*arr;
 
 	i = 0;
-	ill_chr(argv, n);
+	ill_chr(argv, argc);
 	if (n == 1)
 		exit(1);
 	split = ft_split(argv, 32);
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	n = ft_cntwrds(argv, 32);
-	arr = arg_check(n, argv);
+	arr = arg_check(n, argv, argc);
 	if (arr == NULL)
 		return (0);
 	if (n == 2)
