@@ -6,7 +6,7 @@
 /*   By: mleitner <mleitner@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:30:10 by mleitner          #+#    #+#             */
-/*   Updated: 2023/02/27 16:25:48 by mleitner         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:04:40 by mleitner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,21 @@ int	lists_sorted(t_set *set)
 
 	i = 1;
 	sorted = 1;
-	while (i < set->len_a && set->len_a > 1 && sorted)
+	while (i < set->len_a && sorted)
 	{
 		if (set->a[i - 1] > set->a[i])
 			sorted = 0;
 		i++;
 	}
 	i = 1;
-	while (i < set->len_b && set->len_b > 1 && sorted)
+	while (i < set->len_b && sorted)
 	{
 		if (set->b[i - 1] < set->b[i])
 			sorted = 0;
 		i++;
 	}
+	if (set->a[0] < set->b[set->len_b - 1])
+		sorted = 0;
 	return (sorted);
 }
 
